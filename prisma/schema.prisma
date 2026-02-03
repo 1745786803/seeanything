@@ -1,15 +1,19 @@
+// prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  }
+  // ❌ 删掉 url = ...
+  // ❌ 删掉 directUrl = ...
+  // (因为我们已经在 prisma.config.ts 里配置过它们了)
+}
 
 model Photo {
-  id        Int      @id @default(autoincrement())
-  title     String
-  url       String   // 图片链接
-  category  String   // 分类（如：风景、人像）
+  id        String   @id @default(cuid())
+  url       String
+  prompt    String?
   createdAt DateTime @default(now())
 }
