@@ -6,9 +6,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // ❌ 删掉 url = ...
-  // ❌ 删掉 directUrl = ...
-  // (因为我们已经在 prisma.config.ts 里配置过它们了)
+  // ✅ v5 版本必须写在这里
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Photo {
